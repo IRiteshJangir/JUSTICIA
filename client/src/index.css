@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans text-dark antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    @apply bg-gold hover:bg-gold-light text-white font-medium px-6 py-3 rounded transition-all duration-300 inline-flex items-center gap-2;
+  }
+  .btn-outline-gold {
+    @apply border-2 border-gold text-gold hover:bg-gold hover:text-white font-medium px-6 py-3 rounded transition-all duration-300 inline-flex items-center gap-2;
+  }
+  .btn-white {
+    @apply bg-white text-primary font-medium px-6 py-3 rounded hover:bg-cream transition-all duration-300 inline-flex items-center gap-2;
+  }
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .gold-border-card {
+    @apply bg-white rounded-lg border border-gold/20 hover:border-gold/60 transition-all duration-300 p-6;
+  }
+  .dark-card {
+    @apply bg-primary-light rounded-lg border border-white/10 hover:border-gold/40 transition-all duration-300 p-6;
+  }
+  .section-label {
+    @apply text-gold uppercase tracking-[0.2em] text-sm font-medium mb-3;
+  }
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-serif font-bold;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #080D10; }
+::-webkit-scrollbar-thumb { background: #D99A32; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #F0B84C; }
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }

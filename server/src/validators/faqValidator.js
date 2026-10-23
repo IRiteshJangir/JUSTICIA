@@ -1,0 +1,22 @@
+const { z } = require('zod');
+
+const createFaqSchema = z.object({
+  question: z.string().min(1, 'Question is required'),
+  answer: z.string().min(1, 'Answer is required'),
+  category: z.string().optional(),
+  order: z.number().optional(),
+  isPublished: z.boolean().optional()
+});
+
+const updateFaqSchema = z.object({
+  question: z.string().optional(),
+  answer: z.string().optional(),
+  category: z.string().optional(),
+  order: z.number().optional(),
+  isPublished: z.boolean().optional()
+});
+
+module.exports = {
+  createFaqSchema,
+  updateFaqSchema
+};
