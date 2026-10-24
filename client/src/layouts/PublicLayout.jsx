@@ -1,10 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet, Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Scale, Menu, X, Facebook, Linkedin, Instagram, 
-  Phone, Mail, MapPin, Clock, Calendar, MessageCircle, ChevronDown
-} from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Outlet, Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Scale,
+  Menu,
+  X,
+  Facebook,
+  Linkedin,
+  Instagram,
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Calendar,
+  MessageCircle,
+  ChevronDown,
+} from "lucide-react";
 
 // Scroll to Top Component
 const ScrollToTop = () => {
@@ -49,9 +60,15 @@ const TopBar = () => {
           <span>+91 88790 43210</span>
         </div>
         <div className="flex items-center space-x-3 border-l border-gray-700 pl-4">
-          <a href="#" className="hover:text-[#D99A32] transition-colors"><Facebook size={16} /></a>
-          <a href="#" className="hover:text-[#D99A32] transition-colors"><Linkedin size={16} /></a>
-          <a href="#" className="hover:text-[#D99A32] transition-colors"><Instagram size={16} /></a>
+          <a href="#" className="hover:text-[#D99A32] transition-colors">
+            <Facebook size={16} />
+          </a>
+          <a href="#" className="hover:text-[#D99A32] transition-colors">
+            <Linkedin size={16} />
+          </a>
+          <a href="#" className="hover:text-[#D99A32] transition-colors">
+            <Instagram size={16} />
+          </a>
         </div>
       </div>
     </div>
@@ -69,41 +86,46 @@ const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Practice Areas', path: '/practice-areas' },
-    { name: 'Case Studies', path: '/case-studies' },
-    { name: 'Blog', path: '/blog' },
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about" },
+    { name: "Practice Areas", path: "/practice-areas" },
+    { name: "Case Studies", path: "/case-studies" },
+    { name: "Blog", path: "/blog" },
   ];
 
   const pagesLinks = [
-    { name: 'FAQ', path: '/faq' },
-    { name: 'Team', path: '/team' },
+    { name: "FAQ", path: "/faq" },
+    { name: "Team", path: "/team" },
   ];
 
   const isActive = (path) => {
-    if (path === '/') return location.pathname === '/';
+    if (path === "/") return location.pathname === "/";
     return location.pathname.startsWith(path);
   };
 
   return (
-    <nav className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? 'bg-[#0a1114] shadow-lg shadow-black/20' : 'bg-[#080D10]'}`}>
+    <nav
+      className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? "bg-[#0a1114] shadow-lg shadow-black/20" : "bg-[#080D10]"}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
-          
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="text-[#D99A32] p-2 bg-[#11191D] rounded-lg group-hover:bg-[#1a252b] transition-colors">
               <Scale size={32} strokeWidth={1.5} />
             </div>
             <div>
-              <h1 className="font-serif text-2xl font-bold text-white tracking-wider">JUSTICIA</h1>
-              <p className="text-[#D99A32] text-[10px] tracking-widest uppercase font-semibold">Advocates & Legal Consultants</p>
+              <h1 className="font-serif text-2xl font-bold text-white tracking-wider">
+                ADV.RRAJLIWAL
+              </h1>
+              <p className="text-[#D99A32] text-[10px] tracking-widest uppercase font-semibold">
+                Advocates & Legal Consultants
+              </p>
             </div>
           </Link>
 
@@ -113,23 +135,25 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`font-medium transition-colors hover:text-[#F0B84C] ${isActive(link.path) ? 'text-[#D99A32]' : 'text-gray-300'}`}
+                className={`font-medium transition-colors hover:text-[#F0B84C] ${isActive(link.path) ? "text-[#D99A32]" : "text-gray-300"}`}
               >
                 {link.name}
               </Link>
             ))}
-            
+
             {/* Pages Dropdown */}
-            <div 
+            <div
               className="relative"
               onMouseEnter={() => setPagesDropdown(true)}
               onMouseLeave={() => setPagesDropdown(false)}
             >
-              <button className={`flex items-center space-x-1 font-medium transition-colors hover:text-[#F0B84C] ${isActive('/faq') || isActive('/team') ? 'text-[#D99A32]' : 'text-gray-300'}`}>
+              <button
+                className={`flex items-center space-x-1 font-medium transition-colors hover:text-[#F0B84C] ${isActive("/faq") || isActive("/team") ? "text-[#D99A32]" : "text-gray-300"}`}
+              >
                 <span>Pages</span>
                 <ChevronDown size={16} />
               </button>
-              
+
               <AnimatePresence>
                 {pagesDropdown && (
                   <motion.div
@@ -142,7 +166,7 @@ const Navbar = () => {
                       <Link
                         key={link.name}
                         to={link.path}
-                        className={`block px-4 py-3 text-sm hover:bg-[#080D10] transition-colors ${isActive(link.path) ? 'text-[#D99A32]' : 'text-gray-300'}`}
+                        className={`block px-4 py-3 text-sm hover:bg-[#080D10] transition-colors ${isActive(link.path) ? "text-[#D99A32]" : "text-gray-300"}`}
                         onClick={() => setPagesDropdown(false)}
                       >
                         {link.name}
@@ -155,7 +179,7 @@ const Navbar = () => {
 
             <Link
               to="/contact"
-              className={`font-medium transition-colors hover:text-[#F0B84C] ${isActive('/contact') ? 'text-[#D99A32]' : 'text-gray-300'}`}
+              className={`font-medium transition-colors hover:text-[#F0B84C] ${isActive("/contact") ? "text-[#D99A32]" : "text-gray-300"}`}
             >
               Contact Us
             </Link>
@@ -196,35 +220,44 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
             />
             <motion.div
-              initial={{ x: '100%' }}
+              initial={{ x: "100%" }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
               className="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-[#11191D] shadow-2xl z-50 flex flex-col overflow-y-auto"
             >
               <div className="p-6 flex justify-between items-center border-b border-gray-800">
                 <div className="flex items-center space-x-2">
                   <Scale size={24} className="text-[#D99A32]" />
-                  <span className="font-serif text-xl font-bold text-white">JUSTICIA</span>
+                  <span className="font-serif text-xl font-bold text-white">
+                    JUSTICIA
+                  </span>
                 </div>
-                <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white">
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-gray-400 hover:text-white"
+                >
                   <X size={24} />
                 </button>
               </div>
-              
+
               <div className="flex-1 py-6 px-6 flex flex-col space-y-6">
-                {[...navLinks, ...pagesLinks, { name: 'Contact Us', path: '/contact' }].map((link) => (
+                {[
+                  ...navLinks,
+                  ...pagesLinks,
+                  { name: "Contact Us", path: "/contact" },
+                ].map((link) => (
                   <Link
                     key={link.name}
                     to={link.path}
-                    className={`text-lg font-medium ${isActive(link.path) ? 'text-[#D99A32]' : 'text-gray-300'}`}
+                    className={`text-lg font-medium ${isActive(link.path) ? "text-[#D99A32]" : "text-gray-300"}`}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}
                   </Link>
                 ))}
               </div>
-              
+
               <div className="p-6 border-t border-gray-800">
                 <Link
                   to="/book-appointment"
@@ -249,26 +282,38 @@ const Footer = () => {
     <footer className="bg-[#080D10] text-gray-300 pt-16 pb-8 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          
           {/* Col 1 */}
           <div>
             <div className="flex items-center space-x-3 mb-6">
               <Scale size={32} className="text-[#D99A32]" />
               <div>
-                <h2 className="font-serif text-2xl font-bold text-white">JUSTICIA</h2>
+                <h2 className="font-serif text-2xl font-bold text-white">
+                  JUSTICIA
+                </h2>
               </div>
             </div>
             <p className="text-gray-400 mb-6 text-sm leading-relaxed">
-              Premium legal consultancy delivering exceptional results through strategic advocacy, deep expertise, and unwavering dedication to our clients.
+              Premium legal consultancy delivering exceptional results through
+              strategic advocacy, deep expertise, and unwavering dedication to
+              our clients.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 rounded-full border border-[#D99A32] flex items-center justify-center text-[#D99A32] hover:bg-[#D99A32] hover:text-[#080D10] transition-colors">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full border border-[#D99A32] flex items-center justify-center text-[#D99A32] hover:bg-[#D99A32] hover:text-[#080D10] transition-colors"
+              >
                 <Facebook size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-[#D99A32] flex items-center justify-center text-[#D99A32] hover:bg-[#D99A32] hover:text-[#080D10] transition-colors">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full border border-[#D99A32] flex items-center justify-center text-[#D99A32] hover:bg-[#D99A32] hover:text-[#080D10] transition-colors"
+              >
                 <Linkedin size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-[#D99A32] flex items-center justify-center text-[#D99A32] hover:bg-[#D99A32] hover:text-[#080D10] transition-colors">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full border border-[#D99A32] flex items-center justify-center text-[#D99A32] hover:bg-[#D99A32] hover:text-[#080D10] transition-colors"
+              >
                 <Instagram size={18} />
               </a>
             </div>
@@ -281,9 +326,19 @@ const Footer = () => {
               <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-[#D99A32]"></span>
             </h3>
             <ul className="space-y-3">
-              {['Home', 'About', 'Practice Areas', 'Case Studies', 'Blog', 'Contact'].map((item) => (
+              {[
+                "Home",
+                "About",
+                "Practice Areas",
+                "Case Studies",
+                "Blog",
+                "Contact",
+              ].map((item) => (
                 <li key={item}>
-                  <Link to={`/${item.toLowerCase().replace(' ', '-') === 'home' ? '' : item.toLowerCase().replace(' ', '-')}`} className="text-gray-400 hover:text-[#D99A32] transition-colors flex items-center">
+                  <Link
+                    to={`/${item.toLowerCase().replace(" ", "-") === "home" ? "" : item.toLowerCase().replace(" ", "-")}`}
+                    className="text-gray-400 hover:text-[#D99A32] transition-colors flex items-center"
+                  >
                     <span className="mr-2">›</span> {item}
                   </Link>
                 </li>
@@ -298,9 +353,19 @@ const Footer = () => {
               <span className="absolute -bottom-2 left-0 w-12 h-0.5 bg-[#D99A32]"></span>
             </h3>
             <ul className="space-y-3">
-              {['Criminal', 'Family', 'Civil', 'Property', 'Corporate', 'Tax & GST'].map((item) => (
+              {[
+                "Criminal",
+                "Family",
+                "Civil",
+                "Property",
+                "Corporate",
+                "Tax & GST",
+              ].map((item) => (
                 <li key={item}>
-                  <Link to={`/practice-areas/${item.toLowerCase().replace(' & ', '-')}`} className="text-gray-400 hover:text-[#D99A32] transition-colors flex items-center">
+                  <Link
+                    to={`/practice-areas/${item.toLowerCase().replace(" & ", "-")}`}
+                    className="text-gray-400 hover:text-[#D99A32] transition-colors flex items-center"
+                  >
                     <span className="mr-2">›</span> {item} Law
                   </Link>
                 </li>
@@ -316,11 +381,21 @@ const Footer = () => {
             </h3>
             <ul className="space-y-4 mb-6">
               <li className="flex items-start text-gray-400">
-                <MapPin size={20} className="text-[#D99A32] mr-3 mt-1 flex-shrink-0" />
-                <span>123 Legal Avenue, Justice Towers,<br/>New Delhi, 110001</span>
+                <MapPin
+                  size={20}
+                  className="text-[#D99A32] mr-3 mt-1 flex-shrink-0"
+                />
+                <span>
+                  123 Legal Avenue, Justice Towers,
+                  <br />
+                  New Delhi, 110001
+                </span>
               </li>
               <li className="flex items-center text-gray-400">
-                <Phone size={20} className="text-[#D99A32] mr-3 flex-shrink-0" />
+                <Phone
+                  size={20}
+                  className="text-[#D99A32] mr-3 flex-shrink-0"
+                />
                 <span>+91 88790 43210</span>
               </li>
               <li className="flex items-center text-gray-400">
@@ -328,29 +403,35 @@ const Footer = () => {
                 <span>info@justicia.com</span>
               </li>
             </ul>
-            
+
             <form className="mt-4">
               <div className="flex">
-                <input 
-                  type="email" 
-                  placeholder="Email Address" 
+                <input
+                  type="email"
+                  placeholder="Email Address"
                   className="bg-[#11191D] border border-gray-700 text-white px-4 py-2 w-full focus:outline-none focus:border-[#D99A32]"
                 />
-                <button type="button" className="bg-[#D99A32] text-[#080D10] px-4 py-2 font-semibold hover:bg-[#F0B84C] transition-colors">
+                <button
+                  type="button"
+                  className="bg-[#D99A32] text-[#080D10] px-4 py-2 font-semibold hover:bg-[#F0B84C] transition-colors"
+                >
                   Subscribe
                 </button>
               </div>
             </form>
           </div>
-
         </div>
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
           <p>© 2024 Justicia Advocates. All Rights Reserved.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <Link to="/privacy-policy" className="hover:text-gray-300">Privacy Policy</Link>
+            <Link to="/privacy-policy" className="hover:text-gray-300">
+              Privacy Policy
+            </Link>
             <span>|</span>
-            <Link to="/terms-conditions" className="hover:text-gray-300">Terms & Conditions</Link>
+            <Link to="/terms-conditions" className="hover:text-gray-300">
+              Terms & Conditions
+            </Link>
           </div>
         </div>
       </div>
@@ -365,11 +446,11 @@ const PublicLayout = () => {
       <ScrollToTop />
       <TopBar />
       <Navbar />
-      
+
       <main className="flex-grow">
         <Outlet />
       </main>
-      
+
       <Footer />
       <WhatsAppButton />
     </div>

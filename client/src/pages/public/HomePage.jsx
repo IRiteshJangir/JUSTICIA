@@ -20,7 +20,7 @@ import {
   Receipt,
   Monitor,
   HardHat,
-  Award
+  Award,
 } from "lucide-react";
 
 import { Button, LoadingSpinner, EmptyState, Badge } from "../../components/ui";
@@ -39,15 +39,23 @@ const fadeInUp = {
 
 const renderAreaIcon = (iconName) => {
   switch (iconName) {
-    case 'gavel': return <Gavel size={32} />;
-    case 'users': return <Users size={32} />;
-    case 'home': return <Home size={32} />;
-    case 'building': return <Building size={32} />;
-    case 'receipt': return <Receipt size={32} />;
-    case 'shield': return <Shield size={32} />;
-    case 'monitor': return <Monitor size={32} />;
-    case 'hard-hat': return <HardHat size={32} />;
-    case 'scale':
+    case "gavel":
+      return <Gavel size={32} />;
+    case "users":
+      return <Users size={32} />;
+    case "home":
+      return <Home size={32} />;
+    case "building":
+      return <Building size={32} />;
+    case "receipt":
+      return <Receipt size={32} />;
+    case "shield":
+      return <Shield size={32} />;
+    case "monitor":
+      return <Monitor size={32} />;
+    case "hard-hat":
+      return <HardHat size={32} />;
+    case "scale":
     default:
       return <Scale size={32} />;
   }
@@ -67,7 +75,7 @@ const HomePage = () => {
   return (
     <div className="font-sans text-[#252525]">
       <SEO
-        title="Home | JUSTICIA - Advocates & Legal Consultants"
+        title="Home | RRAJLIWALASSOCIATES - Advocates & Legal Consultants"
         description="We provide effective legal solutions with integrity, dedication and professionalism."
       />
 
@@ -81,7 +89,7 @@ const HomePage = () => {
             variants={fadeInUp}
           >
             <p className="text-[#D99A32] uppercase tracking-widest text-sm font-bold mb-4">
-              JUSTICIA – Advocates & Legal Consultants
+              RRAJLIWALASSOCIATES – Advocates & Legal Consultants
             </p>
             <h1 className="text-5xl md:text-7xl font-serif text-white font-bold leading-tight mb-6">
               Defending Rights.
@@ -124,8 +132,12 @@ const HomePage = () => {
                   <Award size={24} />
                 </div>
                 <div>
-                  <p className="text-white font-bold text-sm">Top Rated Advocates</p>
-                  <p className="text-[#D99A32] text-xs font-semibold">15+ Years of Excellence</p>
+                  <p className="text-white font-bold text-sm">
+                    Top Rated Advocates
+                  </p>
+                  <p className="text-[#D99A32] text-xs font-semibold">
+                    15+ Years of Excellence
+                  </p>
                 </div>
               </div>
             </div>
@@ -379,8 +391,11 @@ const HomePage = () => {
                   className="group cursor-pointer"
                 >
                   <div className="aspect-video bg-[#11191D] mb-4 overflow-hidden relative rounded-sm shadow-md">
-                    <img 
-                      src={blog.featuredImage || 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80'} 
+                    <img
+                      src={
+                        blog.featuredImage ||
+                        "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80"
+                      }
                       alt={blog.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
