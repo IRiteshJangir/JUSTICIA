@@ -7,9 +7,20 @@ const unwrapPaginatedData = (key) => (response) => ({
   totalPages: response?.pagination?.pages ?? 1,
 });
 
-const baseUrl = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}/api`
-  : '/api';
+const getBaseUrl = () => {
+  const envUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL;
+  if (envUrl) {
+    return `${envUrl.replace(/\/$/, '')}/api`;
+  }
+  // In production (e.g. Vercel deployment), default directly to live Render backend
+  if (import.meta.env.PROD) {
+    return "https://justicia-dl7h.onrender.com/api";
+  }
+  // Local development uses Vite proxy
+  return "/api";
+};
+
+const baseUrl = getBaseUrl();
 
 const baseQuery = fetchBaseQuery({
   baseUrl,
