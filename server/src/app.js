@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const path = require('path');
+const fs = require('fs');
 const { apiLimiter } = require('./middlewares/rateLimiter');
 const errorHandler = require('./middlewares/errorHandler');
 const AppError = require('./utils/AppError');
@@ -74,11 +76,43 @@ app.use('/api/settings', settingRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/upload', uploadRoutes);
 
+// Serve static client build if present
+const clientDist = path.join(__dirname, '../../client/dist');
+if (fs.existsSync(clientDist)) {
+  app.use(express.static(clientDist));
+}
+
 // Health check
 app.get('/api/health', (req, res) => res.json({ success: true, message: 'JUSTICIA API is running' }));
 
-// 404 handler
-app.all('*', (req, res, next) => {
+// Root status endpoint
+app.get('/', (req, res) => {
+  if (fs.existsSync(path.join(clientDist, 'index.html'))) {
+    return res.sendFile(path.join(clientDist, 'index.html'));
+  }
+  res.status(200).json({
+    success: true,
+    message: '🏛️ JUSTICIA Advocates & Legal Consultants API is running successfully',
+    environment: process.env.NODE_ENV || 'production',
+    endpoints: {
+      health: '/api/health',
+      settings: '/api/settings',
+      practiceAreas: '/api/practice-areas/public',
+      caseStudies: '/api/case-studies/public',
+      blogs: '/api/blogs/public',
+      faqs: '/api/faqs/public',
+      team: '/api/team/public',
+      testimonials: '/api/testimonials/public',
+    },
+    note: 'This is the backend REST API server. The interactive frontend website is hosted on Vercel.',
+  });
+});
+
+// SPA catch-all for frontend routes (if client build is present)
+app.get('*', (req, res, next) => {
+  if (!req.originalUrl.startsWith('/api') && fs.existsSync(path.join(clientDist, 'index.html'))) {
+    return res.sendFile(path.join(clientDist, 'index.html'));
+  }
   next(new AppError(`Cannot find ${req.originalUrl} on this server`, 404));
 });
 
